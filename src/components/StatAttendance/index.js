@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
+/**
+ *
+ * A single attendance stat
+ *
+ */
 export default class StatAttendance extends Component {
     render() {
         const {
@@ -16,3 +22,11 @@ export default class StatAttendance extends Component {
         );
     }
 }
+
+StatAttendance.propTypes = {
+    // Which attendance mark are we showing
+    label: PropTypes.string.isRequired,
+
+    // What's the number of students with this attendance mark
+    value: PropTypes.number.isRequired,
+};

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import StatAttendance from '../StatAttendance';
 
 import './styles.css';
 
+/**
+ *
+ * Attendance stats for students
+ *
+ */
 export default class StatsAttendance extends Component {
     render() {
         const {
@@ -25,3 +31,7 @@ export default class StatsAttendance extends Component {
         );
     }
 }
+
+StatsAttendance.propTypes = {
+    data: PropTypes.objectOf(PropTypes.number).isRequired,
+};

@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './styles.css';
 
+/**
+ *
+ * A single table's row for attendance summary
+ *
+ */
 export default class SummaryAttendanceRow extends Component {
     render() {
         const {
@@ -35,3 +41,25 @@ export default class SummaryAttendanceRow extends Component {
         }
     }
 }
+
+SummaryAttendanceRow.propTypes = {
+    // In this case, generate table heading
+    heading: PropTypes.bool,
+
+    // The default attendance mark
+    attendanceDetault: PropTypes.string,
+
+    // Information about students fetched
+    data: PropTypes.shape({
+        gender: PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        attendanceMark: PropTypes.objectOf(PropTypes.bool),
+    }),
+};
+
+SummaryAttendanceRow.defaultProps = {
+    heading: false,
+};

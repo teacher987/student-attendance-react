@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ButtonsState from '../ButtonsState';
 import DockMultiSetState from '../DockMultiSetState';
@@ -8,6 +9,21 @@ import StudentsGrid from '../StudentsGrid';
 
 import './styles.css';
 
+/**
+ *
+ * Student attendance overview
+ *
+ * Contains a grid of students' information,
+ * along with buttons to set the attendance state for each of them
+ *
+ * There's also multi select option for setting attendance state
+ * for multiple people at once
+ *
+ * Also a reset button (reset attendance state for all students to unmarked)
+ *
+ * And a button to show a modal with attendance data summary
+ *
+ */
 export default class Attendance extends Component {
     constructor(props) {
         super(props);
@@ -93,7 +109,7 @@ export default class Attendance extends Component {
                     />
 
                     <ButtonsState
-                        onDone={setFormState}
+                        onDone={() => setFormState(true)}
                         onReset={this.onReset}
                     />
                 </footer>
@@ -117,3 +133,51 @@ export default class Attendance extends Component {
         );
     }
 }
+
+Attendance.propTypes = {
+    // Default attendance  value (eg. 'unchecked')
+    attendanceDetault: PropTypes.string.isRequired,
+
+    // Hidden attendance marks (we don't show 'unchecked' button)
+    attendanceMarkHidden: PropTypes.arrayOf(PropTypes.string),
+
+
+    // Whether the data is being loaded
+    isLoading: PropTypes.bool,
+
+    // Whether multi seelct is enabled
+    enabledMultiSelect: PropTypes.bool,
+
+    // Whether to show the attendance summary
+    showResults: PropTypes.bool,
+
+
+    // All possible attendance keys (eg. ['present', 'late', 'absent', 'unchecked'])
+    dataAttendanceKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+
+    // Number of students for each count (eg. { 'present': 1, 'late': 10, 'absent': 5, 'unchecked': 3 })
+    dataCounts: PropTypes.objectOf(PropTypes.number).isRequired,
+
+    // Information about students fetched
+    dataStudents: PropTypes.arrayOf(PropTypes.shape({
+        gender: PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        attendanceMark: PropTypes.objectOf(PropTypes.bool),
+    })).isRequired,
+
+    // IDs of the selected students
+    selection: PropTypes.object,
+};
+
+Attendance.defaultProps = {
+    attendanceMarkHidden: false,
+
+    isLoading: false,
+    enabledMultiSelect: false,
+    showResults: false,
+
+    selection: new Set(),
+};

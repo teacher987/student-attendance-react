@@ -1,0 +1,7 @@
+.dock_multi_set_state {
+    background-color: rgba(255,255,255, 0.9);
+    padding-bottom: 0.5em;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

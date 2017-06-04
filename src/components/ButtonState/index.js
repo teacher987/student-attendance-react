@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 
 import './styles.css';
 
+/**
+ *
+ * A single button for state actions
+ * (reset/show summary for now)
+ *
+ */
 export default class ButtonState extends Component {
     render() {
         const {
@@ -27,3 +34,11 @@ export default class ButtonState extends Component {
         );
     }
 }
+
+ButtonState.propTypes = {
+    // Button on click callback
+    onClick: PropTypes.func.isRequired,
+
+    // Button text (and icon)
+    label: PropTypes.string.isRequired,
+};

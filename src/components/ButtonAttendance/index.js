@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
 
 import './styles.css';
 
-export default class Button extends Component {
+/**
+ *
+ * A single button for attendance switch
+ *
+ */
+export default class ButtonAttendance extends Component {
     constructor(props) {
         super(props);
 
@@ -35,8 +41,22 @@ export default class Button extends Component {
                 onClick={this.click}
                 title={label}
             >
-                <Icon color={value ? '#4caf50' : '#384450'} name={label} />
+                <Icon name={label} />
             </button>
         );
     }
 }
+
+ButtonAttendance.propTypes = {
+    // ID of the student we're changing the attendance for
+    studentID: PropTypes.number.isRequired,
+
+    // Button label (eg. 'present')
+    label: PropTypes.string.isRequired,
+
+    // Button value (whether it's on or off)
+    value: PropTypes.bool.isRequired,
+
+    // Callback on button press
+    onSetState: PropTypes.func.isRequired,
+};

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 import './styles.css';
 
+/**
+ *
+ * All definitions for icons used within the app
+ *
+ */
 export default class IconDefinitions extends Component {
     render() {
         return (

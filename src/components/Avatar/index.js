@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './styles.css';
 
+/**
+ *
+ * Simply render a user's avatar
+ *
+ */
 export default class Avatar extends Component {
     render() {
         return (
@@ -8,3 +15,8 @@ export default class Avatar extends Component {
         );
     }
 }
+
+Avatar.propTypes = {
+    // Image URL
+    src: PropTypes.string.isRequired,
+};

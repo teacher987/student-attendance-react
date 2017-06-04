@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ButtonAttendance from '../ButtonAttendance';
 
@@ -8,8 +9,8 @@ export default class ButtonsAttendance extends Component {
     render() {
         const {
             attendance,
-            studentID = null,
-            skip = [],
+            studentID,
+            skip,
 
             onSetState,
         } = this.props;
@@ -36,3 +37,22 @@ export default class ButtonsAttendance extends Component {
         );
     }
 }
+
+ButtonsAttendance.propTypes = {
+    // mark: value attendance info (eg. { 'present': true, 'lase': false })
+    attendance: PropTypes.objectOf(PropTypes.bool).isRequired,
+
+    // Which attendance marks to skip
+    skip: PropTypes.arrayOf(PropTypes.string),
+
+    // Callback on attendance state change
+    onSetState: PropTypes.func.isRequired,
+
+    // ID of the student in question
+    studentID: PropTypes.number,
+};
+
+ButtonsAttendance.defaultProps = {
+    skip: [],
+    studentID: 0,
+};

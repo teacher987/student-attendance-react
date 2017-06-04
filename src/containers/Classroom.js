@@ -5,6 +5,12 @@ import Attendance from '../components/Attendance';
 import AppActions from '../redux/app';
 import StudentsActions from '../redux/students';
 
+/**
+ *
+ * Classroom attendance screen
+ *
+ */
+
 const mapStateToProps = (state, ownProps) => ({
     attendanceDetault: 'unmarked',
     attendanceMarkHidden: ['unmarked'],

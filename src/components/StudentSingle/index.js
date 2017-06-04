@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Avatar from '../Avatar';
 import Checkbox from '../Checkbox';
@@ -7,6 +8,13 @@ import Username from '../Username';
 
 import './styles.css';
 
+/**
+ *
+ * Show a single student's information
+ * along with a checkbox for selection and
+ * buttons for attendance mark set
+ *
+ */
 export default class StudentSingle extends Component {
     render() {
         const {
@@ -50,3 +58,32 @@ export default class StudentSingle extends Component {
         );
     }
 }
+
+StudentSingle.propTypes = {
+    // Student data
+    data: PropTypes.shape({
+        gender: PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        attendanceMark: PropTypes.objectOf(PropTypes.bool),
+    }).isRequired,
+
+    // Hidden attendance marks (we don't show 'unchecked' button)
+    attendanceMarkHidden: PropTypes.arrayOf(PropTypes.string),
+
+    // Whether the student is selected (for multi attendance mark set)
+    isSelected: PropTypes.bool,
+
+    // onClick callback for changing the students' attendance mark
+    onSetAttendanceState: PropTypes.func.isRequired,
+
+    // onClick callback for (de)selecting the user (for/from multi attendance mark)
+    onSetSelectionState: PropTypes.func.isRequired,
+};
+
+StudentSingle.defaultProps = {
+    attendanceMarkHidden: [],
+    isSelected: false,
+};

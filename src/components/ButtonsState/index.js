@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ButtonState from '../ButtonState';
 
@@ -26,3 +27,11 @@ export default class ButtonsState extends Component {
         );
     }
 }
+
+ButtonsState.propTypes = {
+    // Callback for clicking the done button
+    onDone: PropTypes.func.isRequired,
+
+    // Callback for clicking the reset button
+    onReset: PropTypes.func.isRequired,
+};

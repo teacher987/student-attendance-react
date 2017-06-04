@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ButtonClose from '../ButtonClose';
 import SummaryAttendance from '../SummaryAttendance';
 
 import './styles.css';
 
+/**
+ *
+ * Popup showing summary of students' attendance
+ *
+ */
 export default class PopupResults extends Component {
     constructor(props) {
         super(props);
@@ -53,3 +59,21 @@ export default class PopupResults extends Component {
         );
     }
 }
+
+PopupResults.propTypes = {
+    // The default attendance mark
+    attendanceDetault: PropTypes.string.isRequired,
+
+    // Students' data
+    data: PropTypes.arrayOf(PropTypes.shape({
+        gender: PropTypes.string.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        attendanceMark: PropTypes.objectOf(PropTypes.bool),
+    })).isRequired,
+
+    // Callback for closing the popup
+    dispatchClose: PropTypes.func.isRequired,
+};

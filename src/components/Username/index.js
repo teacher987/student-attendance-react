@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Just print out the name of the user
+ */
 export default class Username extends Component {
     render() {
         return (
@@ -7,3 +11,7 @@ export default class Username extends Component {
         );
     }
 }
+
+Username.propTypes = {
+	name: PropTypes.string.isRequired,
+};
