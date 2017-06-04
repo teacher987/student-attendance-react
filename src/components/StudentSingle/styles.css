@@ -1,0 +1,16 @@
+.student_single {
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+    display: inline-block;
+    margin-left: 2%;
+    margin-bottom: 2vh;
+    text-align: center;
+    transition: transform 0.3s;
+    width: 23.5%;
+}
+.student_single:nth-child(4n + 1) {
+    margin-left: 0;
+}
+.student_single:hover {
+    transform: scale(1.05);
+}

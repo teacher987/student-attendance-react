@@ -1,0 +1,20 @@
+.popup_results {
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+    left: 50%;
+    max-width: 600px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 2;
+}
+.popup_results__shadow {
+    background-color: rgba(0,0,0, 0.5);
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

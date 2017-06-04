@@ -4,15 +4,19 @@ import { Provider } from 'react-redux';
 import createStore from './redux';
 
 import Classroom from './containers/Classroom';
+import IconDefinitions from './components/IconDefinitions';
 
 const store = createStore({});
 
 class App extends Component {
     render() {
         return (
-            <Provider store={store}>
-                <Classroom />
-            </Provider>
+        	<div>
+            	<Provider store={store}>
+                	<Classroom />
+            	</Provider>
+            	<IconDefinitions />
+            </div>
         );
     }
 }

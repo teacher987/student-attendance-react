@@ -1,0 +1,9 @@
+.button_close {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    fill: #fff;
+    position: absolute;
+    right: -1em;
+    top: -1em;
+}

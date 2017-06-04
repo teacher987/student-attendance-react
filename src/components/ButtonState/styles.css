@@ -1,0 +1,11 @@
+.button_state {
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    padding: 1em;
+    transition: transform 0.3s;
+}
+.button_state:focus,
+.button_state:hover {
+    transform: scale(1.1);
+}

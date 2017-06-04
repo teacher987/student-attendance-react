@@ -1,0 +1,8 @@
+.summary_attendance_row--header {
+    background-color: #607d8b;
+    color: #fff;
+}
+
+.summary_attendance_row__cell {
+    padding: 0.2em 1em;
+}

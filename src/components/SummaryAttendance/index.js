@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import SummaryAttendanceRow from './SummaryAttendanceRow';
 
+import './styles.css';
+
 export default class SummaryAttendance extends Component {
     render() {
         const {
@@ -10,7 +12,7 @@ export default class SummaryAttendance extends Component {
         } = this.props;
 
         return (
-            <table>
+            <table className="summary_attendance">
                 <thead>
                     <SummaryAttendanceRow heading />
                 </thead>

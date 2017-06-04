@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Loading from '../Loading';
 import StudentSingle from '../StudentSingle';
 
+import './styles.css';
+
 export default class StudentsGrid extends Component {
     componentWillMount() {
         this.props.fetchData();
@@ -21,7 +23,7 @@ export default class StudentsGrid extends Component {
             return <Loading />;
         } else {
             return (
-                <div>
+                <div className="students_grid">
                     {data.map((student, index) => {
                         return (
                             <StudentSingle

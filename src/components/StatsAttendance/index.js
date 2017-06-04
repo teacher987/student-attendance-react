@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import StatAttendance from '../StatAttendance';
 
+import './styles.css';
+
 export default class StatsAttendance extends Component {
     render() {
         const {
@@ -9,7 +11,7 @@ export default class StatsAttendance extends Component {
         } = this.props;
 
         return (
-            <div>
+            <div className="stats_attendance">
                 {Object.keys(data).map(key => {
                     return (
                         <StatAttendance

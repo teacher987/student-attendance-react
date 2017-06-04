@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './styles.css';
+
 export default class SummaryAttendanceRow extends Component {
     render() {
         const {
@@ -10,11 +12,11 @@ export default class SummaryAttendanceRow extends Component {
 
         if (heading) {
             return (
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>
-                    <th>Attendance</th>
+                <tr className="summary_attendance_row summary_attendance_row--header">
+                    <th className="summary_attendance_row__cell summary_attendance_row__cell--heading">First Name</th>
+                    <th className="summary_attendance_row__cell summary_attendance_row__cell--heading">Last Name</th>
+                    <th className="summary_attendance_row__cell summary_attendance_row__cell--heading">Gender</th>
+                    <th className="summary_attendance_row__cell summary_attendance_row__cell--heading">Attendance</th>
                 </tr>
             );
         } else {
@@ -23,11 +25,11 @@ export default class SummaryAttendanceRow extends Component {
             ;
 
             return (
-                <tr>
-                    <td>{data.firstName}</td>
-                    <td>{data.lastName}</td>
-                    <td>{data.gender}</td>
-                    <td>{attendance ? attendance : attendanceDetault}</td>
+                <tr className="summary_attendance_row summary_attendance_row--body">
+                    <td className="summary_attendance_row__cell summary_attendance_row__cell--data">{data.firstName}</td>
+                    <td className="summary_attendance_row__cell summary_attendance_row__cell--data">{data.lastName}</td>
+                    <td className="summary_attendance_row__cell summary_attendance_row__cell--data">{data.gender}</td>
+                    <td className="summary_attendance_row__cell summary_attendance_row__cell--data">{attendance ? attendance : attendanceDetault}</td>
                 </tr>
             );
         }

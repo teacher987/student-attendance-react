@@ -4,25 +4,19 @@ import Icon from '../Icon';
 
 import './styles.css';
 
-export default class ButtonState extends Component {
+export default class ButtonClose extends Component {
     render() {
         const {
             onClick,
-
-            label,
         } = this.props;
 
         return (
             <button
-                className="button_state"
+                className="button_close"
                 onClick={onClick}
-                label={label}
-                title={label}
+                type="button"
             >
-                <Icon
-                    name={label.toLowerCase()}
-                    size="xl"
-                />
+                <Icon name="close" />
             </button>
         );
     }

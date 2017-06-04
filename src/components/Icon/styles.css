@@ -1,0 +1,12 @@
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon--normal {
+    height: 1em;
+    width: 1em;
+}
+.icon--xl {
+    height: 5em;
+    width: 5em;
+}

@@ -77,7 +77,7 @@ export default [
         gender: 'female',
         firstName: 'Katy',
         lastName: 'Perry',
-        image: './images/kety-perry.jpg',
+        image: './images/katy-perry.jpg',
         id: 7,
         attendanceMark: {
             present: false,

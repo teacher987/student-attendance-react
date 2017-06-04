@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import ButtonState from '../ButtonState';
 
+import './styles.css';
+
 export default class ButtonsState extends Component {
     render() {
         const {
@@ -10,7 +12,7 @@ export default class ButtonsState extends Component {
         } = this.props;
 
         return (
-            <div>
+            <div className="buttons_state">
                 <ButtonState
                     onClick={onReset}
                     label="Reset"

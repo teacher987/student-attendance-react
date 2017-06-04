@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import Icon from '../Icon';
+
+import './styles.css';
+
 export default class Button extends Component {
     constructor(props) {
         super(props);
@@ -25,8 +29,13 @@ export default class Button extends Component {
         } = this.props;
 
         return (
-            <button onClick={this.click}>
-            	Button {label} {value ? 'Yes' : 'No'}
+            <button
+                className={`button_attendance ${value ? 'button_attendance--active' : ''}`}
+                label={label}
+                onClick={this.click}
+                title={label}
+            >
+                <Icon color={value ? '#4caf50' : '#384450'} name={label} />
             </button>
         );
     }

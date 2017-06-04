@@ -5,6 +5,8 @@ import PopupResults from '../PopupResults';
 import StatsAttendance from '../StatsAttendance';
 import StudentsGrid from '../StudentsGrid';
 
+import './styles.css';
+
 export default class Attendance extends Component {
     constructor(props) {
         super(props);
@@ -44,29 +46,34 @@ export default class Attendance extends Component {
 
         return (
             <div>
-                <StudentsGrid
-                    attendanceMarkHidden={attendanceMarkHidden}
-                    data={dataStudents}
-                    isLoading={isLoading}
+                <main className="main">
+                    <StudentsGrid
+                        attendanceMarkHidden={attendanceMarkHidden}
+                        data={dataStudents}
+                        isLoading={isLoading}
 
-                    fetchData={fetchData}
+                        fetchData={fetchData}
 
-                    onSetState={setStudentState}
-                />
+                        onSetState={setStudentState}
+                    />
 
-                <StatsAttendance
-                    data={dataCounts}
-                />
+                </main>
+                <footer className="footer">
+                    <StatsAttendance
+                        data={dataCounts}
+                    />
 
-                <ButtonsState
-                    onDone={setFormState}
-                    onReset={this.onReset}
-                />
+                    <ButtonsState
+                        onDone={setFormState}
+                        onReset={this.onReset}
+                    />
+                </footer>
 
                 {showResults &&
                     <PopupResults
                         attendanceDetault={attendanceDetault}
                         data={dataStudents}
+                        dispatchClose={() => setFormState(false)}
                     />
                 }
             </div>

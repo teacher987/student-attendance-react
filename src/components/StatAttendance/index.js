@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './styles.css';
+
 export default class StatAttendance extends Component {
     render() {
         const {
@@ -8,7 +10,9 @@ export default class StatAttendance extends Component {
         } = this.props;
 
         return (
-            <p>StatAttendance... {label}: {value}</p>
+            <p className="stat_attendance">
+            	{label}: {value}
+            </p>
         );
     }
 }

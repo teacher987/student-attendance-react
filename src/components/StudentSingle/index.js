@@ -4,6 +4,8 @@ import Avatar from '../Avatar';
 import ButtonsAttendance from '../ButtonsAttendance';
 import Username from '../Username';
 
+import './styles.css';
+
 export default class StudentSingle extends Component {
     render() {
         const {
@@ -21,7 +23,7 @@ export default class StudentSingle extends Component {
         } = this.props;
 
         return (
-            <div>
+            <div className="student_single">
                 <Avatar src={image} />
 
                 <Username name={`${firstName} ${lastName}`} />
