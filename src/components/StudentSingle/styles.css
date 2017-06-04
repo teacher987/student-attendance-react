@@ -4,6 +4,7 @@
     display: inline-block;
     margin-left: 2%;
     margin-bottom: 2vh;
+    position: relative;
     text-align: center;
     transition: transform 0.3s;
     width: 23.5%;
@@ -11,6 +12,7 @@
 .student_single:nth-child(4n + 1) {
     margin-left: 0;
 }
-.student_single:hover {
+.student_single:hover,
+.student_single--active {
     transform: scale(1.05);
 }

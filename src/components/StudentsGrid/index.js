@@ -15,8 +15,10 @@ export default class StudentsGrid extends Component {
             attendanceMarkHidden,
             data,
             isLoading,
+            selection,
 
-            onSetState,
+            onSetAttendanceState,
+            onSetSelectionState,
         } = this.props;
 
         if (isLoading) {
@@ -29,10 +31,12 @@ export default class StudentsGrid extends Component {
                             <StudentSingle
                                 data={student}
                                 attendanceMarkHidden={attendanceMarkHidden}
+                                isSelected={selection.has(student.id)}
 
                                 key={index}
 
-                                onSetState={onSetState}
+                                onSetAttendanceState={onSetAttendanceState}
+                                onSetSelectionState={onSetSelectionState}
                             />
                         );
                     })}

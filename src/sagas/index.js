@@ -7,7 +7,7 @@ import { StudentsTypes } from '../redux/students';
 import {
     getStudents,
 
-    setStudentState,
+    setStudentAttendanceState,
 } from './studentsSagas';
 
 export default function* root() {
@@ -19,8 +19,8 @@ export default function* root() {
         ),
 
         takeEvery(
-        	StudentsTypes.SET_STUDENT_STATE_REQUEST,
-        	setStudentState,
+        	StudentsTypes.SET_STUDENT_ATTENDANCE_STATE_REQUEST,
+        	setStudentAttendanceState,
         	StudentsService
         ),
     ]);

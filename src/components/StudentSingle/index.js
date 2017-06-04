@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Avatar from '../Avatar';
+import Checkbox from '../Checkbox';
 import ButtonsAttendance from '../ButtonsAttendance';
 import Username from '../Username';
 
@@ -19,21 +20,31 @@ export default class StudentSingle extends Component {
                 image,
             },
 
-            onSetState,
+            isSelected,
+            onSetAttendanceState,
+            onSetSelectionState,
         } = this.props;
 
         return (
-            <div className="student_single">
-                <Avatar src={image} />
+            <div className={`student_single ${isSelected ? 'student_single--active' : ''}`}>
+                <label>
+                    <Avatar src={image} />
 
-                <Username name={`${firstName} ${lastName}`} />
+                    <Checkbox
+                        id={id}
+                        checked={isSelected}
+                        onChange={onSetSelectionState}
+                    />
+
+                    <Username name={`${firstName} ${lastName}`} />
+                </label>
 
                 <ButtonsAttendance
                     attendance={attendanceMark}
                     skip={attendanceMarkHidden}
                     studentID={id}
 
-                    onSetState={onSetState}
+                    onSetState={onSetAttendanceState}
                 />
             </div>
         );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ButtonsState from '../ButtonsState';
+import DockMultiSetState from '../DockMultiSetState';
 import PopupResults from '../PopupResults';
 import StatsAttendance from '../StatsAttendance';
 import StudentsGrid from '../StudentsGrid';
@@ -12,36 +13,62 @@ export default class Attendance extends Component {
         super(props);
 
         this.onReset = this.onReset.bind(this);
+        this.onChangeSelection = this.onChangeSelection.bind(this);
+        this.onSetAttendanceStateMulti = this.onSetAttendanceStateMulti.bind(this);
     }
 
     onReset() {
         const {
             dataStudents,
 
-            setStudentState,
+            setStudentAttendanceState,
         } = this.props;
 
         dataStudents.forEach(student => {
             // Whether any attendanceMark === true
             const shouldReset = Object.values(student.attendanceMark).some(x => x);
-            if (shouldReset) setStudentState(student.id);
+            if (shouldReset) setStudentAttendanceState(student.id);
         });
+    }
+
+    onChangeSelection(studentID, selected) {
+        const {
+            enabledMultiSelect,
+            setSelectionState,
+        } = this.props;
+
+        if (enabledMultiSelect === false) this.props.setMultiSelectState(true);
+
+        setSelectionState(studentID, selected);
+    }
+
+    onSetAttendanceStateMulti(_, mark) {
+        const {
+            selection,
+
+            setStudentAttendanceStateMulti,
+        } = this.props;
+
+        setStudentAttendanceStateMulti(selection, mark);
     }
 
     render() {
         const {
             attendanceDetault,
             attendanceMarkHidden,
-            dataCounts,
-            dataStudents,
+            enabledMultiSelect,
             isLoading,
             showResults,
+
+            dataAttendanceKeys,
+            dataCounts,
+            dataStudents,
+            selection,
 
             fetchData,
 
             setFormState,
-
-            setStudentState,
+            setStudentAttendanceState,
         } = this.props;
 
         return (
@@ -51,10 +78,12 @@ export default class Attendance extends Component {
                         attendanceMarkHidden={attendanceMarkHidden}
                         data={dataStudents}
                         isLoading={isLoading}
+                        selection={selection}
 
                         fetchData={fetchData}
 
-                        onSetState={setStudentState}
+                        onSetAttendanceState={setStudentAttendanceState}
+                        onSetSelectionState={this.onChangeSelection}
                     />
 
                 </main>
@@ -74,6 +103,14 @@ export default class Attendance extends Component {
                         attendanceDetault={attendanceDetault}
                         data={dataStudents}
                         dispatchClose={() => setFormState(false)}
+                    />
+                }
+
+                {enabledMultiSelect &&
+                    <DockMultiSetState
+                        attendanceMarkHidden={attendanceMarkHidden}
+                        keys={dataAttendanceKeys}
+                        onSetState={this.onSetAttendanceStateMulti}
                     />
                 }
             </div>

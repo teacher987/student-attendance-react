@@ -7,7 +7,7 @@ const getStudents = function() {
     };
 }
 
-const setStudentState = function(studentID, mark, markState) {
+const setStudentAttendanceState = function(studentID, mark, markState) {
     return {
         ok: true,
         data: {
@@ -21,5 +21,5 @@ const setStudentState = function(studentID, mark, markState) {
 export default {
     getStudents,
 
-    setStudentState,
+    setStudentAttendanceState,
 };

@@ -12,18 +12,18 @@ export function* getStudents(service, action) {
     }
 }
 
-export function* setStudentState(service, action) {
+export function* setStudentAttendanceState(service, action) {
     const {
         studentID,
         mark,
         markState,
     } = action;
 
-    const response = yield call(service.setStudentState, studentID, mark, markState);
+    const response = yield call(service.setStudentAttendanceState, studentID, mark, markState);
 
     if (response.ok === true) {
-        yield put(StudentsActions.setStudentStateSuccess(studentID));
+        yield put(StudentsActions.setStudentAttendanceStateSuccess(studentID));
     } else {
-        yield put(StudentsActions.setStudentStateFailure(response));
+        yield put(StudentsActions.setStudentAttendanceStateFailure(response));
     }
 }

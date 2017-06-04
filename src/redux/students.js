@@ -5,9 +5,12 @@ const { Types, Creators } = createActions({
     fetchStudentsSuccess: ['dataStudents'],
     fetchStudentsFailure: ['response'],
 
-    setStudentStateRequest: ['studentID', 'mark', 'markState'],
-    setStudentStateSuccess: ['studentID', 'mark', 'markState'],
-    setStudentStateFailure: ['response'],
+    setStudentAttendanceStateRequest: ['studentID', 'mark', 'markState'],
+    setStudentAttendanceStateSuccess: ['studentID', 'mark', 'markState'],
+    setStudentAttendanceStateFailure: ['response'],
+
+    clearSelectionRequest: null,
+    setSelectionStateRequest: ['studentID', 'selected'],
 });
 
 export const StudentsTypes = Types;
@@ -18,6 +21,8 @@ const INITIAL_STATE = {
     processingStudent: 0,
     errorStudents: false,
 
+    dataAttendanceKeys: [],
+
     dataCounts: {
         present: 0,
         late: 0,
@@ -26,6 +31,8 @@ const INITIAL_STATE = {
     },
 
     dataStudents: [],
+
+    selection: new Set(),
 };
 
 
@@ -70,15 +77,23 @@ const calculateCounts = dataStudents => {
 export const fetchStudentsRequest = (state = INITIAL_STATE) => {
     return {
         ...state,
+        selection: new Set(),
         fetchingStudents: true,
-        errorStudents: false
+        errorStudents: false,
     };
 };
 
 export const fetchStudentsSuccess = (state = INITIAL_STATE, { dataStudents }) => {
+    // Save possible attendance marks (only on 1st fetch)
+    const dataAttendanceKeys = state.dataAttendanceKeys.length === 0 && dataStudents.length > 0 ?
+        Object.keys(dataStudents[0].attendanceMark) :
+        state.dataAttendanceKeys
+    ;
+
     return {
         ...state,
         dataCounts: calculateCounts(dataStudents),
+        dataAttendanceKeys,
         dataStudents,
         fetchingStudents: false,
         errorStudents: false,
@@ -102,7 +117,7 @@ export const fetchStudentsFailure = (state = INITIAL_STATE, { response }) => {
 
 
 
-export const setStudentStateRequest = (state = INITIAL_STATE, { studentID, mark, markState }) => {
+export const setStudentAttendanceStateRequest = (state = INITIAL_STATE, { studentID, mark, markState }) => {
     const dataStudents = state.dataStudents.map(student => {
         const attendanceMark = { ...student.attendanceMark };
 
@@ -128,7 +143,7 @@ export const setStudentStateRequest = (state = INITIAL_STATE, { studentID, mark,
     };
 };
 
-export const setStudentStateSuccess = (state = INITIAL_STATE, { studentID }) => {
+export const setStudentAttendanceStateSuccess = (state = INITIAL_STATE, { studentID }) => {
     return {
         ...state,
         errorStudents: false,
@@ -136,7 +151,7 @@ export const setStudentStateSuccess = (state = INITIAL_STATE, { studentID }) => 
     };
 };
 
-export const setStudentStateFailure = (state = INITIAL_STATE, { response }) => {
+export const setStudentAttendanceStateFailure = (state = INITIAL_STATE, { response }) => {
     return {
         ...state,
         errorStudents: true,
@@ -148,12 +163,41 @@ export const setStudentStateFailure = (state = INITIAL_STATE, { response }) => {
 
 
 
+
+
+
+
+
+export const setSelectionStateRequest = (state = INITIAL_STATE, { studentID, selected }) => {
+    const selection = new Set(state.selection);
+    try {
+        selection[selected ? 'add' : 'delete'](studentID);
+    } catch(e) {
+        debugger;
+    }
+
+    return { ...state, selection };
+};
+
+export const clearSelectionRequest = (state = INITIAL_STATE) => {
+    const selection = new Set();
+
+    return { ...state, selection };
+};
+
+
+
+
+
 export const reducer = createReducer(INITIAL_STATE, {
     [StudentsTypes.FETCH_STUDENTS_REQUEST]: fetchStudentsRequest,
     [StudentsTypes.FETCH_STUDENTS_SUCCESS]: fetchStudentsSuccess,
     [StudentsTypes.FETCH_STUDENTS_FAILURE]: fetchStudentsFailure,
 
-    [StudentsTypes.SET_STUDENT_STATE_REQUEST]: setStudentStateRequest,
-    [StudentsTypes.SET_STUDENT_STATE_SUCCESS]: setStudentStateSuccess,
-    [StudentsTypes.SET_STUDENT_STATE_FAILURE]: setStudentStateFailure,
+    [StudentsTypes.SET_STUDENT_ATTENDANCE_STATE_REQUEST]: setStudentAttendanceStateRequest,
+    [StudentsTypes.SET_STUDENT_ATTENDANCE_STATE_SUCCESS]: setStudentAttendanceStateSuccess,
+    [StudentsTypes.SET_STUDENT_ATTENDANCE_STATE_FAILURE]: setStudentAttendanceStateFailure,
+
+    [StudentsTypes.SET_SELECTION_STATE_REQUEST]: setSelectionStateRequest,
+    [StudentsTypes.CLEAR_SELECTION_REQUEST]: clearSelectionRequest,
 });

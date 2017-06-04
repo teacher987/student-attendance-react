@@ -8,8 +8,8 @@ export default class ButtonsAttendance extends Component {
     render() {
         const {
             attendance,
-            studentID,
-            skip,
+            studentID = null,
+            skip = [],
 
             onSetState,
         } = this.props;
