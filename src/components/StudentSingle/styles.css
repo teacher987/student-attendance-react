@@ -16,3 +16,19 @@
 .student_single--active {
     transform: scale(1.05);
 }
+
+@media (max-width: 800px) {
+    .student_single {
+        width: 49%;
+    }
+    .student_single:nth-child(2n + 1) {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .student_single {
+        margin-left: 0;
+        width: 98%;
+    }
+}
